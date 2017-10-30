@@ -3,90 +3,75 @@ body {
 }
 
 
-/*NAV BAR_________
 
-
- .navbar {
-   margin: 0;
-   padding: 20px 0;
-   background-color: white;
-   border: none;
- }
-
-
-
-  .navbar-default .navbar-brand {
-   color: black;
-   font-weight: bold;
-   font-size: 2.2em;
-   padding-left: 30px;
-   }
-
-   .navbar-default .navbar-nav #first-child{
-       color: red;
-     }
-
-  .navbar-default .navbar-nav li a:hover {
-       color: red;
-     }
-
- .dropdown .glyphicon {
-   font-size: 8px;
- }*/
-/*Carousel____________________*/
-
-
+/*Splah-page Instructionsl*******************************/
 .Splashpage_header{
   display:flex;
+  width:100%;
   justify-content: center;
 }
 
+.splash-wrapper {
+  display: flex;
 
-
-.separation{
-  display: block;
-  height: 75px;
 }
+
+.Splashpage{
+
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction:row;
+}
+
+/*First page Instructionsl*******************************/
+.Instructions{
+display:flex;
+align-items: center;
+width:45%;
+  justify-content: center;
+height:100%;
+
+
+}
+.Instruction_button .btn-primary> {
+  display:flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  width:200px;
+  height:100px;
+}
+/*First page carousel*******************************/
+
+#carouseldiffusionInfo{
+
+  width:45%;
+  height:100%;
+}
+
+
 .item img{
 
   z-index: 900;
   width: 100%;
   padding:5% 5% 5% 5%;
 }
+/*First page footer*/
 
-.Instructions{
-width:50%;
-float:left;
-height:100%;
-margin-left:15%;
-margin-right:10px;
+.Seperator{
+  margin-bottom:100px;
+  height:100px;
 }
-.btn .btn-primary{
-  dislay:flex;
-  align-items: center;
-  margin:top:50%;
-  justify-content:center;
-  width:200px;
-  height:20px;
-
-
-}
-#carouseldiffusionInfo{
-  width:50%;
-  float:right;
-  height:100%;
-  margin-right:15%;
-}
-
 .Start-game-button{
-
-float:left;
-margin-left:28%;
-width:60%;
+  top:10%;
+  height:200px;
+  width:100%;
   background-image: url("./../imgages/overlay.png");
 }
 
 .Start-game-button button{
+margin-top:50px;
+  margin-left:15%;
   border-radius:10px;
   width:50%;
 
@@ -106,7 +91,7 @@ width:60%;
 .carousel-inner{
   height: 100%;
   width: 100%;
-
+  t
 }
 
 .carousel-inner .carousel-text{
@@ -127,6 +112,17 @@ width:60%;
   left: 0px;
   top: 0px;
   z-index: 100;
+}
+
+@media (min-width:1220px) {
+    body{font-size: 1em;
+    }
+    h1{
+      font-size:3.5em;
+    }
+    h2{
+      font-size:3.0em;
+    }
 }
 
 @media (max-width:1225px) {
