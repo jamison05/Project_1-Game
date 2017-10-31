@@ -12,8 +12,9 @@ body {
 }
 
 .splash-wrapper {
+  width:100%;
   display: flex;
-
+  flex-direction:row;
 }
 
 .Splashpage{
@@ -71,18 +72,22 @@ height:100%;
 
 .Start-game-button button{
 margin-top:50px;
-  margin-left:15%;
+  margin-left:23%;
   border-radius:10px;
   width:50%;
 
 
 }
 .carousel-control{
+  display:flex;
   z-index: 1000;
   background-color: brown;
   margin-top:15%;
-  height: 12%;
-  width: 4%;
+  height: 19%;
+  width: 7%;
+  border-width:thin;
+  top:21%;
+  align-items: center;
   flex-wrap:wrap;
 
 }
@@ -98,7 +103,7 @@ margin-top:50px;
   position:absolute;
   display:inline-flex;
   flex-wrap: wrap;
-  top:20%;
+  top:5%;
   left:20%;
 
 
@@ -170,25 +175,34 @@ margin-top:50px;
 }
 
 @media (max-width: 500px) {
-    body{font-size: 1em;
+    body{font-size: 7px;
 }
      h1{
-       font-size:1.35em;
+       font-size:10px;
      }
      h2{
-       font-size:1em;
+       font-size:5px;
+
      }
 
-     .carousel-inner .carousel-text{
-       position:absolute;
-       display:inline-flex;
-       flex-wrap: wrap;
-       top:5%;
-       left:5%;
+     .carousel-inner>.carousel-text{
+
+     display:flex;
+     flex-wrap: wrap;
+     flex-direction: row;
+     margin:0 auto;
+
+
+
+
+
      }
      .carousel-inner .carousel-text>h2{
-      display:inline-flex;
-      align-items:baseline;
+
+            display:flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+    margin-top:0 auto;
      }
 
 }
