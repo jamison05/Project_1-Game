@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Animated Diffusion Game</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="./css/styles.css">
   </head>
 <body>
 <!-- The begining is where the title, user/game-status, game canvas, user-feedback will be ordered respectively
@@ -14,10 +14,10 @@
 <!-- This declares the game status header class, -->
     <header class= "Game-Status">
   '
-        <p class = "Timer">5</p>
-        <span class = "Level">0</span>
-        <span class = "Speed">1</span>
-        <div class="Lives">
+        <p class = "timer">5</p>
+        <span class = "level">0</span>
+        <span class = "speed">1</span>
+        <div class="lives">
           <div class="life"></div>
           <div class="life"></div>
           <div class="life"></div>
@@ -32,9 +32,20 @@
       <span class = "Key-Press">0</span>
       <p>Time off by: =</p>
       <span class = "Speed">0 ms</span>
-
+      <button class="Initiate-rhythm">Start_rhythm</button>
     </footer>
+    <script
+         src="https://code.jquery.com/jquery-3.2.1.min.js"
+         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+         crossorigin="anonymous">
+       </script>
 
+       <script
+         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+         crossorigin="anonymous">
+       </script>
+        <script src="./js/script_diffuse.js"></script>
 
 
 </body>
