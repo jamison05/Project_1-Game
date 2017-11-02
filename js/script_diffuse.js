@@ -2,8 +2,20 @@ console.log('Java is connected');
 var start_button = document.querySelector('.Initiate-rhythm');
 start_button.onclick = function () {
     // create the li element (starts emptys)
+
+    if (initiate_iter<1){
+        if (myMolecules === null){
+        create_Molecules(125,0.35,1.25,0.35);//Num of elements, total distribution x and y, ratio of y/x offset distribtuion
+      }else{
+        myMolecules = [];
+        create_Molecules(125,0.35,1.25,0.35);
+        countdown_start = 0;
+      }
+
+    }
     console.log('Timer button has been pressed');
     set_timer();
+
 
 };
 
@@ -232,21 +244,43 @@ Molecule.prototype.draw = function () {
     ctx.fill();
 };
 
-Molecule.prototype.resetIfPassed = function () {
+Molecule.prototype.reset_molecule_position = function () {
+var random_selector = Math.floor((Math.random *4));
+
     if (this.x <= -canvas.width) {
+      if (random_selector <= 1){
+        this.x = Math.random()* canvas.width;
+      }else{
         this.x = canvas.width;
+        this.x=0;
+      }
     }
     if (this.x >= canvas.width) {
-        this.x = canvas.width;
+  if (random_selector <= 1){
+        this.x = Math.random()* canvas.width;
+      }else{
+          this.x = -canvas.width;
+          this.x=0;
+      }
     }
-    if (this.y >= canvas.width) {
-        this.y = canvas.width;
+if (this.y >= canvas.height) {
+  if (random_selector <= 1){
+        this.y = Math.random()* canvas.height;
+    }else{
+        this.y = -canvas.height;}
+        this.y=0;
     }
-    if (this.y <= -canvas.width) {
-        this.y = canvas.width;
+    if (this.y <= -canvas.height) {
+      if (random_selector <= 1){
+        this.y = Math.random()* canvas.height;
+      }else{
+          this.y = canvas.height;
+          this.y =0;
+      }
     }
 
 };
+
 
 // Molecule.prototype.crashWith = function (obj) {
 //     return getBottom(this) >= getTop(obj)    &&
@@ -328,12 +362,7 @@ var initiate_iter=0;
 function draw () {
 
 
-    if (initiate_iter<1){
-        create_Molecules(75,0.35,1.25,1);//Num of elements, total distribution x and y, ratio of y/x offset distribtuion
-        initiate_iter++;
 
-
-    }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
      //myMolecules[0].draw();
@@ -347,14 +376,14 @@ function draw () {
     // loop over all the tubes to update and draw each one
     myMolecules.forEach(function (oneMolecule) {
         oneMolecule.draw();
-        oneMolecule.x += rate_rand_movement();
-        oneMolecule.y += rate_rand_movement();
+
 
 
          //Here is where you will update the drawing and modulate x, y, or x and y with positive or negative functions
         //Here is where you will make all of the functions calls to get the molecules or as nomral as possible.
-        oneMolecule.resetIfPassed();
-
+        oneMolecule.reset_molecule_position();
+        oneMolecule.x += rate_rand_movement()*oneMolecule.temp_movement;  //This modulates the motion based on  temperature !!! very important for controllin the game.
+        oneMolecule.y += rate_rand_movement()*oneMolecule.temp_movement;
         // if any tube crashes with flappy box, GAME OVER!
         // if (oneMolecule.crashWith(flappyBox)) {
         //     isGameOver = true;
