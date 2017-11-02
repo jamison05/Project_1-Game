@@ -93,7 +93,7 @@ function check_rhythm(){
 
          //Here is the main code that drives the rhythm of the game, the iter_progress is connected both to the timing and the diffusion
          //However the timer is the driver.
-         game_iteratation++;
+         game_iteration++;
          iter_progress++;
          if (iter_progress>=game_rhythm_temp_pace.length-1){
            iter_progress =0;
@@ -106,15 +106,15 @@ function check_rhythm(){
 
         if (life <0){
               game_status=-1;
-              location.href='./game_results.html';
+              location.href='./game_results_lose.html';
         }
         if (life <0){
               game_status=-1;
-              location.href='./game_results.html';
+              location.href='./game_results_lose.html';
         }
-        if (game_iteration >15){
+        if (game_iteration >20){
 
-            location.href='./game_results.html';
+            location.href='./game_results_win.html';
         }
         //!!! Very important part of the program, this will make the program a continous loop
         set_timer();

@@ -1,3 +1,11 @@
+.game_results>p,a{
+    height: 100%;
+
+    display:flex;
+    justify-content:center;
+    align-items: center;
+  }
+
 .lives {
     transition: 1s;
 }
