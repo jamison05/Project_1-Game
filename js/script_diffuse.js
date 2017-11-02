@@ -5,10 +5,10 @@ start_button.onclick = function () {
 
     if (initiate_iter<1){
         if (myMolecules === null){
-        create_Molecules(125,0.35,1.25,0.35);//Num of elements, total distribution x and y, ratio of y/x offset distribtuion
+        create_Molecules(125,0.35,1.25,game_rhythm_temp_pace[iter_progress]);//Num of elements, total distribution x and y, ratio of y/x offset distribtuion
       }else{
         myMolecules = [];
-        create_Molecules(125,0.35,1.25,0.35);
+        create_Molecules(125,0.35,1.25,game_rhythm_temp_pace[iter_progress]);
         countdown_start = 0;
       }
 
@@ -30,10 +30,14 @@ var countFeedback = document.querySelector('.timer');
 countFeedback.innerHTML = countdown_start;
 //There has to be an array that have sets of the numbers in which you can play.
 var rhythm_check_intervals = [1, 2, 3, 4];  //This will be expanded to be dynamic and progress with the game or iterate through multiple intervals
+var game_rhythm_temp_pace = [0.35,0.45,0.58,0.7,0.8,0.9,1,1.5,1.8];
+var game_iteration=0;
+var iter_progress=0;
 var correct_check=0;
 var user_input_keys =[];
 var key_stroke_input=0;
 var life = 15;
+
 
 
 function set_timer (){
@@ -42,8 +46,8 @@ initiate_timer =  setInterval(
       function () {
           // Increases the count of the number
           //this variable is the major driver of the game and number.
-          console.log('Timer is going and activated');
-          countdown_start += 0.015;
+
+          countdown_start += 0.015*game_rhythm_temp_pace[iter_progress];  //Progresses through the game logic of pace affecting the timer
           countFeedback.innerHTML = countdown_start;
 
           // stop the "setInterval()" loop when the counter reaches 0
@@ -65,17 +69,17 @@ initiate_timer =  setInterval(
 //Checks the rhythm of the user input and inputs it into an array.
 function check_rhythm(){
   if (countdown_start % 4 !== 0){
-      if(countdown_start <1 && key_stroke_input<1){
+      if(countdown_start <1 && key_stroke_input<3){  //I had to lax the key_stroke_input where user can make a few mistakes getting the rhytm of the game.
         //Use the filter function
          key_stroke_input++;
          user_input_keys.push(countdown_start);
-      }else if (countdown_start>1 && countdown_start <2 && key_stroke_input<2){
+      }else if (countdown_start>1 && countdown_start <2 && key_stroke_input<6){
           key_stroke_input++;
          user_input_keys.push(countdown_start);
-      }else if (countdown_start>2 && countdown_start <3 && key_stroke_input<3){
+      }else if (countdown_start>2 && countdown_start <3 && key_stroke_input<9){
           key_stroke_input++;
          user_input_keys.push(countdown_start);
-      }else if (countdown_start>3 && countdown_start <4 && key_stroke_input<4){
+      }else if (countdown_start>3 && countdown_start <4 && key_stroke_input<12){
          key_stroke_input++;
          user_input_keys.push(countdown_start);
       }else if(countdown_start>4){
@@ -83,18 +87,35 @@ function check_rhythm(){
         //does not accomplish the intended rhythm.
          key_stroke_input = 0;
          //Call a filter function that determines whether the values are correct.
-        console.log('Reached end');
+
          user_input_keys.push(countdown_start);
          correct_check = check_rhythm_filter_check(user_input_keys);
-        update_lifeDOM();
+
+         //Here is the main code that drives the rhythm of the game, the iter_progress is connected both to the timing and the diffusion
+         //However the timer is the driver.
+         game_iteratation++;
+         iter_progress++;
+         if (iter_progress>=game_rhythm_temp_pace.length-1){
+           iter_progress =0;
+         }
+         //
+         update_lifeDOM();
          if(correct_check<4){
           lose_a_life();
         }
 
         if (life <0){
-              location.href='./end_game.html';
+              game_status=-1;
+              location.href='./game_results.html';
         }
+        if (life <0){
+              game_status=-1;
+              location.href='./game_results.html';
+        }
+        if (game_iteration >15){
 
+            location.href='./game_results.html';
+        }
         //!!! Very important part of the program, this will make the program a continous loop
         set_timer();
 
@@ -103,12 +124,14 @@ function check_rhythm(){
 
 }
 
+var game_status=0;  //Determines whether 1 is you win the game -1 is when you lose the game.
 
 function check_rhythm_filter_check(){
 
   var correct_hits = user_input_keys.filter(function(each_input){
 
-        return ((each_input >= 1 && (each_input % 1 <=0.25 || each_input % 1 >=0.75) ) ||
+        return ((each_input < 1 && (each_input <=0.25 || each_input >=0.75) )||
+          (each_input >= 1 && (each_input % 1 <=0.25 || each_input % 1 >=0.75) ) ||
           (each_input >=2 &&  (each_input % 2 <=0.25 || each_input % 2 >=0.75)) ||
           (each_input >= 3  && (each_input % 3 <=0.25 || each_input % 3 >=0.75))) && each_input <4;
           });
@@ -160,33 +183,22 @@ $(document).ready(function () {
   life -= 1;
   update_lifeDOM();
   }
-
+//Code that updates the live elements visually,
   function update_lifeDOM () {
         $('.lives p').html('Lives: ' + life);
-
-        // Plain DOM version:
-        // myP.innerHTML = 'Score: ' + score;
-
         var myPost = $('.lives');
-
-        // remove the classes "poop", "warm", and "hot"
         myPost.removeClass('life1 life2 life3');
-
-        // add the "poop" class if the score is less than 0
         if (life >=3) {
             myPost.addClass('life3');
         }
-        // add the "hot" class if the score is greater than 20
         else if (life===2) {
             myPost.addClass('life2');
         }
-        // add the "warm" class if the score is greater than 10
-        // (but less than 20)
         else if (life<=1) {
             myPost.addClass('life1');
         }
-     // updatePostDom()
-} // document ready
+
+}
 
 //--------------------Canvas Implementation----------------------------------------------//
 
@@ -202,10 +214,10 @@ var ctx = canvas.getContext('2d');
 
 //Each molecule will be declared in an object through a prototyhpe function,
 //Each object will have a speed that will be determined by the random context according to temperature.
-//Each object will have a sensor, a square area that indicates how many objects are in its location, from the amount of
-//objects in its location will affect another variable that positions the objects primarily x -> to the right.
+//(Maybe)Each object will have a sensor, a square area that indicates how many objects are in its location, from the amount of
+//(Maybe)objects in its location will affect another variable that positions the objects primarily x -> to the right.
 
-// So there will be (x,y)= random-movement * context-(temperature) * local-area-determination(same molecule) * local-diffusion-events
+// So there will be (x,y)= random-movement * context-(temperature)
 
 //if it is closer the object will have a more redish color if it is farther away it will have a more yellowish color.
 //You will have 4 types of functions that will map the initial distribution.
@@ -348,15 +360,6 @@ return value;
 
 
 var myMolecules= [];
-// var myTubes = [
-//   new Tube(10, 100, 'green', 30, 0),
-//   new Tube(15, 85, 'green', 60, 0),
-//   new Tube(10, 50, 'green', 80, 450),
-//   new Tube(10, 100, 'tomato', 100, 400),
-//   new Tube(30, 200, 'green', 150, 0),
-//   new Tube(30, 200, 'green', 150, 300),
-//   new Tube(50, 300, 'tomato', 300, 200),
-// ];
 
 var initiate_iter=0;
 function draw () {
@@ -381,6 +384,11 @@ function draw () {
 
          //Here is where you will update the drawing and modulate x, y, or x and y with positive or negative functions
         //Here is where you will make all of the functions calls to get the molecules or as nomral as possible.
+
+
+        //!!!!Here is the main connection to the timing part and the canvas diffusion.
+        oneMolecule.temp_movement= game_rhythm_temp_pace[iter_progress];
+
         oneMolecule.reset_molecule_position();
         oneMolecule.x += rate_rand_movement()*oneMolecule.temp_movement;  //This modulates the motion based on  temperature !!! very important for controllin the game.
         oneMolecule.y += rate_rand_movement()*oneMolecule.temp_movement;
