@@ -1,0 +1,34 @@
+.lives {
+    transition: 1s;
+}
+.lives img {
+
+height:50px;
+width:50px;
+
+}
+
+
+.life3{
+     transition: 3s;
+     content:  url('./../images/life3.png');
+     display: inline-block;
+     transform: scale(.25);
+     transform: scale(.75);
+}
+
+
+.life2::after,
+.life2::before {
+     content:  url('./../images/life2.png');
+     display: inline-block;
+     transform: scale(.25);
+}
+
+
+.life1::before,
+.life1::after {
+    content:  url('./../images/life1.png');
+    display: inline-block;
+    transform: scale(.25);
+}

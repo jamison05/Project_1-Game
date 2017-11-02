@@ -21,6 +21,8 @@ var rhythm_check_intervals = [1, 2, 3, 4];  //This will be expanded to be dynami
 var correct_check=0;
 var user_input_keys =[];
 var key_stroke_input=0;
+var life = 15;
+
 
 function set_timer (){
 initiate_timer =  setInterval(
@@ -37,7 +39,7 @@ initiate_timer =  setInterval(
               console.log("Time has reseted, good.");
 
               countFeedback.innerHTML = countdown_start;
-              clearInterval(initiate_timer);
+               clearInterval(initiate_timer);
               check_rhythm();
 //Here is where you reset all values.
       countdown_start=0;
@@ -72,10 +74,14 @@ function check_rhythm(){
         console.log('Reached end');
          user_input_keys.push(countdown_start);
          correct_check = check_rhythm_filter_check(user_input_keys);
+        update_lifeDOM();
          if(correct_check<4){
-           //Lose lives.
-         }
+          lose_a_life();
+        }
 
+        if (life <0){
+              location.href='./end_game.html';
+        }
 
         //!!! Very important part of the program, this will make the program a continous loop
         set_timer();
@@ -99,20 +105,6 @@ function check_rhythm_filter_check(){
   return correct_hits.length;
 
 }
-
-/*$(document).ready(function () {
-    $('.Start-game-button').click(function () {
-        // $('.wrapper').hide();
-
-        // $('.wrapper').fadeOut(7000);
-          // fade out over 7 seconds
-        location.href='./foodlist.html';
-
-          // slide up over 7 seconds
-    });
-
-});*/
-
 
 $(document).ready(function () {
     var game_melody_bar = {
@@ -149,3 +141,210 @@ $(document).ready(function () {
         } // switch
     }); // keyup
 });
+
+
+
+  function lose_a_life(){
+  life -= 1;
+  update_lifeDOM();
+  }
+
+  function update_lifeDOM () {
+        $('.lives p').html('Lives: ' + life);
+
+        // Plain DOM version:
+        // myP.innerHTML = 'Score: ' + score;
+
+        var myPost = $('.lives');
+
+        // remove the classes "poop", "warm", and "hot"
+        myPost.removeClass('life1 life2 life3');
+
+        // add the "poop" class if the score is less than 0
+        if (life >=3) {
+            myPost.addClass('life3');
+        }
+        // add the "hot" class if the score is greater than 20
+        else if (life===2) {
+            myPost.addClass('life2');
+        }
+        // add the "warm" class if the score is greater than 10
+        // (but less than 20)
+        else if (life<=1) {
+            myPost.addClass('life1');
+        }
+     // updatePostDom()
+} // document ready
+
+//--------------------Canvas Implementation----------------------------------------------//
+
+//Initiatilation of the Canvas object
+var canvas = document.querySelector('.diffusion-game');
+canvas.width = window.innerWidth - 30;
+var ctx = canvas.getContext('2d');
+
+
+//ctx will be used to draw the arrays.
+
+//Will have objects moving from one part of the screen to the right.
+
+//Each molecule will be declared in an object through a prototyhpe function,
+//Each object will have a speed that will be determined by the random context according to temperature.
+//Each object will have a sensor, a square area that indicates how many objects are in its location, from the amount of
+//objects in its location will affect another variable that positions the objects primarily x -> to the right.
+
+// So there will be (x,y)= random-movement * context-(temperature) * local-area-determination(same molecule) * local-diffusion-events
+
+//if it is closer the object will have a more redish color if it is farther away it will have a more yellowish color.
+//You will have 4 types of functions that will map the initial distribution.
+// You will use a log function for both x and y,
+
+function Molecule (width, height, color, x, y,context_temp) {
+    console.log('Create_molecule1');
+    this.width = width;
+    this.height = height;
+    this.color = color;  //The color turns more reddish if the molecules are densley packed and warm.
+    this.x = x + (rate_rand_movement()*context_temp);//Gradient_direction will decrease as determinant_surround decrease.
+    this.y = y + (rate_rand_movement()*context_temp);
+    this.r_movement= rate_rand_movement;//Will be a constant
+    this.temp_movement= context_temp; //This will fluctuate with each game iteration.
+
+}
+
+//get_molecule_color returns a colective function of an additive affect of both temp and determinant_surrond
+function get_molecule_color(){
+
+
+}
+function rate_rand_movement(){
+ var d = 5-Math.floor(Math.random()*10);
+return d;
+
+}
+
+
+
+
+Molecule.prototype.draw = function () {
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 25, 0, (Math.PI*2));
+    ctx.fill();
+};
+
+Molecule.prototype.resetIfPassed = function () {
+    if (this.x <= -this.width) {
+        this.x = canvas.width;
+    }
+};
+
+// Molecule.prototype.crashWith = function (obj) {
+//     return getBottom(this) >= getTop(obj)    &&
+//            getTop(this)    <= getBottom(obj) &&
+//            getRight(this)  >= getLeft(obj)   &&
+//            getLeft(this)   <= getRight(obj);
+// };
+//
+// function getTop(obj) {
+//   return obj.y;
+// }
+//
+// function getBottom(obj) {
+//   return obj.y + obj.height;
+// }
+//
+// function getLeft(obj) {
+//   return obj.x;
+// }
+//
+// function getRight(obj) {
+//   return obj.x + obj.width;
+// }
+
+
+var canvas = document.querySelector('.diffusion-game');
+canvas.width = window.innerWidth - 30;
+
+var ctx = canvas.getContext('2d');
+
+ctx.fillRect(20, 20, 100, 100);
+// var flappyBox = {
+//     x: 0,
+//     y: 225,
+//     width: 50,
+//     height: 50,
+//     draw: function () {
+//         ctx.fillStyle = 'indigo';
+//         ctx.fillRect(this.x, this.y, this.width, this.height);
+//     }
+// };
+
+
+function create_Molecules(number, total_distr_percent, y_x_ratio){
+
+  for (var i =0; i < number; i++){
+    var temp= new Molecule(50, 50, 'green', molecule_diffuse_location(total_distr_percent,y_x_ratio)[0],molecule_diffuse_location(total_distr_percent,y_x_ratio)[1]);
+    myMolecules.push(temp);
+  }
+
+}
+
+function molecule_diffuse_location(percent_diffused,y_x_ratio){
+//y/x  ratio meaning that diffusion is mostly spread over the y/x ratios.
+//So if y_x_ratio is 1.25 it will equal 1.25/addtional spread trough the y-axis
+
+var value=[Math.random()*(canvas.width*percent_diffused*y_x_ratio),Math.random()*(canvas.width*percent_diffused*(1/y_x_ratio))];
+return value;
+
+}
+
+var myMolecules= [];
+// var myTubes = [
+//   new Tube(10, 100, 'green', 30, 0),
+//   new Tube(15, 85, 'green', 60, 0),
+//   new Tube(10, 50, 'green', 80, 450),
+//   new Tube(10, 100, 'tomato', 100, 400),
+//   new Tube(30, 200, 'green', 150, 0),
+//   new Tube(30, 200, 'green', 150, 300),
+//   new Tube(50, 300, 'tomato', 300, 200),
+// ];
+
+var initiate_iter=0;
+function draw () {
+
+
+    if (initiate_iter<1){
+        create_Molecules(75,0.25,1);//Num of elements, total distribution x and y, ratio of y/x offset distribtuion
+        initiate_iter++;
+
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+     //myMolecules[0].draw();
+
+    // assume first that the game isn't over
+               var isGameOver = false;
+
+    //Test to see if the code works.
+    //ctx.fillRect(20, 20, 100, 100);
+
+    // loop over all the tubes to update and draw each one
+    myMolecules.forEach(function (oneMolecule) {
+        oneMolecule.draw();
+        //oneMolecule.x -= 0.5;  //Here is where you will update the drawing and modulate x, y, or x and y with positive or negative functions
+        //Here is where you will make all of the functions calls to get the molecules or as nomral as possible.
+        // oneMolecule.resetIfPassed();
+
+        // if any tube crashes with flappy box, GAME OVER!
+        // if (oneMolecule.crashWith(flappyBox)) {
+        //     isGameOver = true;
+        // }
+    });
+
+    // only continue to draw things if game isn't over
+    if (!isGameOver) {
+        requestAnimationFrame(draw);
+    }
+}
+
+requestAnimationFrame(draw);
