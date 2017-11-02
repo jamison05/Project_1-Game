@@ -204,8 +204,8 @@ function Molecule (width, height, color, x, y,context_temp) {
     this.width = width;
     this.height = height;
     this.color = color;  //The color turns more reddish if the molecules are densley packed and warm.
-    this.x = x + (rate_rand_movement()*context_temp);//Gradient_direction will decrease as determinant_surround decrease.
-    this.y = y + (rate_rand_movement()*context_temp);
+    this.x = x; //+ (rate_rand_movement()*context_temp);//Gradient_direction will decrease as determinant_surround decrease.
+    this.y = y; //+ (rate_rand_movement()*context_temp);
     this.r_movement= rate_rand_movement;//Will be a constant
     this.temp_movement= context_temp; //This will fluctuate with each game iteration.
 
@@ -217,7 +217,7 @@ function get_molecule_color(){
 
 }
 function rate_rand_movement(){
- var d = 5-Math.floor(Math.random()*10);
+ var d = 10-Math.floor(Math.random()*20);
 return d;
 
 }
@@ -233,9 +233,19 @@ Molecule.prototype.draw = function () {
 };
 
 Molecule.prototype.resetIfPassed = function () {
-    if (this.x <= -this.width) {
+    if (this.x <= -canvas.width) {
         this.x = canvas.width;
     }
+    if (this.x >= canvas.width) {
+        this.x = canvas.width;
+    }
+    if (this.y >= canvas.width) {
+        this.y = canvas.width;
+    }
+    if (this.y <= -canvas.width) {
+        this.y = canvas.width;
+    }
+
 };
 
 // Molecule.prototype.crashWith = function (obj) {
@@ -280,11 +290,14 @@ ctx.fillRect(20, 20, 100, 100);
 // };
 
 
-function create_Molecules(number, total_distr_percent, y_x_ratio){
+function create_Molecules(number, total_distr_percent, y_x_ratio, temp1){
 
   for (var i =0; i < number; i++){
-    var temp= new Molecule(50, 50, 'green', molecule_diffuse_location(total_distr_percent,y_x_ratio)[0],molecule_diffuse_location(total_distr_percent,y_x_ratio)[1]);
+    console.log(molecule_diffuse_location(total_distr_percent,y_x_ratio)[1]);
+    var temp= new Molecule(50, 50, 'green', molecule_diffuse_location(total_distr_percent,y_x_ratio)[0],molecule_diffuse_location(total_distr_percent,y_x_ratio)[1],temp1);
     myMolecules.push(temp);
+
+
   }
 
 }
@@ -297,6 +310,8 @@ var value=[Math.random()*(canvas.width*percent_diffused*y_x_ratio),Math.random()
 return value;
 
 }
+
+
 
 var myMolecules= [];
 // var myTubes = [
@@ -314,8 +329,9 @@ function draw () {
 
 
     if (initiate_iter<1){
-        create_Molecules(75,0.25,1);//Num of elements, total distribution x and y, ratio of y/x offset distribtuion
+        create_Molecules(75,0.35,1.25,1);//Num of elements, total distribution x and y, ratio of y/x offset distribtuion
         initiate_iter++;
+
 
     }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -331,9 +347,13 @@ function draw () {
     // loop over all the tubes to update and draw each one
     myMolecules.forEach(function (oneMolecule) {
         oneMolecule.draw();
-        //oneMolecule.x -= 0.5;  //Here is where you will update the drawing and modulate x, y, or x and y with positive or negative functions
+        oneMolecule.x += rate_rand_movement();
+        oneMolecule.y += rate_rand_movement();
+
+
+         //Here is where you will update the drawing and modulate x, y, or x and y with positive or negative functions
         //Here is where you will make all of the functions calls to get the molecules or as nomral as possible.
-        // oneMolecule.resetIfPassed();
+        oneMolecule.resetIfPassed();
 
         // if any tube crashes with flappy box, GAME OVER!
         // if (oneMolecule.crashWith(flappyBox)) {
