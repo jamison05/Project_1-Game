@@ -36,7 +36,7 @@ var iter_progress=0;
 var correct_check=0;
 var user_input_keys =[];
 var key_stroke_input=0;
-var life = 15;
+var life = 5;
 
 
 

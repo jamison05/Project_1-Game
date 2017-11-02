@@ -1,9 +1,31 @@
-.game_results>p,a{
-    height: 100%;
+.layout_centered{
+  display:flex;
+  width:auto;
+  height:auto;
+  justify-content:center;
+  align-items: center;
+  text-align:center;
+  margin-top:20%;
+}
 
+.Game_Status{
+display:flex;
+flex-direction:row;
+justify-content:space-between;
+}
+.User-response-bar{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+
+}
+.game_results h1,a{
+    height: 50%;
+    width:auto;
     display:flex;
     justify-content:center;
     align-items: center;
+    text-align:center;
   }
 
 .lives {
@@ -26,17 +48,17 @@ width:50px;
 }
 
 
-.life2::after,
-.life2::before {
+.life2{
      content:  url('./../images/life2.png');
      display: inline-block;
      transform: scale(.25);
+     transform: scale(.75);
 }
 
 
-.life1::before,
-.life1::after {
+.life1{
     content:  url('./../images/life1.png');
     display: inline-block;
     transform: scale(.25);
+    transform: scale(.75);
 }
