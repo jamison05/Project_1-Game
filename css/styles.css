@@ -34,6 +34,11 @@ height:100%;
 
 
 }
+
+.Instruction_button>button{
+background-color:  #bbc4ef;
+
+}
 .Instruction_button .btn-primary> {
   display:flex;
   justify-content: center;
@@ -43,11 +48,16 @@ height:100%;
   height:100px;
 }
 /*First page carousel*******************************/
+.container-carousel{
+  width:400px;
+  height:350px;
 
+}
 #carouseldiffusionInfo{
+width:100%;
+height:100%;
+padding:5% 5% 5% 5%;
 
-  width:45%;
-  height:100%;
 }
 
 
@@ -73,16 +83,25 @@ height:100%;
 .Start-game-button button{
 margin-top:50px;
   margin-left:23%;
+  color:white;
+  font-size:1.5em;
+  font-weight: bold;
   border-radius:10px;
   width:50%;
   height:10%;
+  padding:1.8% 1.8% 4% 1.8%;
 
+ /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#bbc4ef,#fccdd3, #bbc4ef); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#bbc4ef,#fccdd3, #bbc4ef); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#bbc4ef ,#fccdd3, #bbc4ef); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#bbc4ef,#fccdd3, #bbc4ef); /* Standard syntax */
 
 }
 .carousel-control{
   display:flex;
   z-index: 1000;
-  background-color: brown;
+  background-color: #6534ff;
   margin-top:15%;
   height: 19%;
   width: 7%;
@@ -97,18 +116,27 @@ margin-top:50px;
 .carousel-inner{
   height: 100%;
   width: 100%;
-  t
+  background-color:#bbc4ef;
 }
 
+.carousel-inner img{
+
+  height:250px;
+  width: 250px;
+  background-color:#bbc4ef;
+  margin-left:25%;
+  padding:2% 2% 2% 5%
+}
 .carousel-inner .carousel-text{
-  position:absolute;
+
   display:inline-flex;
   flex-wrap: wrap;
   top:5%;
   left:20%;
-
+  padding:2% 2% 2% 5%
 
 }
+
 
 .overlay {
 
@@ -203,7 +231,7 @@ margin-top:50px;
             display:flex;
             flex-wrap: wrap;
             flex-direction: row;
-    margin-top:0 auto;
+            margin-top:0 auto;
      }
 
 }

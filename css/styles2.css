@@ -5,18 +5,59 @@
   justify-content:center;
   align-items: center;
   text-align:center;
-  margin-top:20%;
+  margin-top:25%;
 }
 
 .Game_Status{
 display:flex;
-flex-direction:row;
-justify-content:space-between;
+justify-content:center;
+align-items:flex-start;
+}
+.header_class h1{
+margin-left:5%;
+}
+.canvas_class canvas{
+  margin-left:5%;
+}
+
+.Game_Status_div>span, p{
+  font-size:2em;
+  font-style:bold;
+  margin-left:15px;
+  margin-right:15px;
+}
+
+
+
+.Game_Status_div{
+display:flex;
+justify-content:flex-start;
+background-color:rgba(15, 15, 15, 0.25);
+height:15%;
+width:30%;
+margin-left:5%;
+padding:2% 2% 2% 2%;
 }
 .User-response-bar{
   display:flex;
-  flex-direction:row;
-  justify-content:space-between;
+  flex-wrap: wrap;
+  background-color:rgba(15, 15, 15, 0.25);
+  width:55%;
+  height:15%;
+  margin-left:5%;
+  margin-bottom:10%;
+
+}
+
+.User-response-bar>button{
+margin-left:5%;
+margin-top:1%;
+
+height:50%;
+}
+.User-response-bar span, p{
+  font-size:2em;
+  font-style:bold;
 
 }
 .game_results h1,a{

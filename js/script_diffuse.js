@@ -5,10 +5,10 @@ start_button.onclick = function () {
 
     if (initiate_iter<1){
         if (myMolecules === null){
-        create_Molecules(125,0.35,1.25,game_rhythm_temp_pace[iter_progress]);//Num of elements, total distribution x and y, ratio of y/x offset distribtuion
+        create_Molecules(125,0.5,0.5,game_rhythm_temp_pace[iter_progress]);//Num of elements, total distribution x and y, ratio of y/x offset distribtuion
       }else{
         myMolecules = [];
-        create_Molecules(125,0.35,1.25,game_rhythm_temp_pace[iter_progress]);
+        create_Molecules(125,0.5,0.5,game_rhythm_temp_pace[iter_progress]);
         countdown_start = 0;
       }
 
@@ -26,8 +26,11 @@ start_button.onclick = function () {
 //Declaration count-up number I may make it a modulus of 4.  To represent the beat.
 //This is where the count will start. it Will will increase this number
 var countdown_start = 0;
+var key_pressed =document.querySelector('.Key-Press');
+var arbdiffusion_speed =document.querySelector('.Speed');
 var countFeedback = document.querySelector('.timer');
 countFeedback.innerHTML = countdown_start;
+
 //There has to be an array that have sets of the numbers in which you can play.
 var rhythm_check_intervals = [1, 2, 3, 4];  //This will be expanded to be dynamic and progress with the game or iterate through multiple intervals
 var game_rhythm_temp_pace = [0.35,0.45,0.58,0.7,0.8,0.9,1,1.5,1.8];
@@ -37,7 +40,8 @@ var correct_check=0;
 var user_input_keys =[];
 var key_stroke_input=0;
 var life = 5;
-
+key_pressed.innerHTML=correct_check;
+arbdiffusion_speed.innerHTML=game_rhythm_temp_pace[iter_progress];
 
 
 function set_timer (){
@@ -48,18 +52,20 @@ initiate_timer =  setInterval(
           //this variable is the major driver of the game and number.
 
           countdown_start += 0.015*game_rhythm_temp_pace[iter_progress];  //Progresses through the game logic of pace affecting the timer
-          countFeedback.innerHTML = countdown_start;
+          countFeedback.innerHTML = Math.floor((countdown_start)*1000) + " "+ "milliseconds";
 
           // stop the "setInterval()" loop when the counter reaches 0
           if (countdown_start >4.03 ) {
               console.log("Time has reseted, good.");
 
-              countFeedback.innerHTML = countdown_start;
+              countFeedback.innerHTML = (Math.floor(countdown_start)*1000) + " "+ "milliseconds";
                clearInterval(initiate_timer);
-              check_rhythm();
-//Here is where you reset all values.
-      countdown_start=0;
-       user_input_keys =[];
+               check_rhythm();
+               key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
+               arbdiffusion_speed.innerHTML="Speed is: "+game_rhythm_temp_pace[iter_progress];
+              //Here is where you reset all values.
+               countdown_start=0;
+               user_input_keys =[];
 
             }
       },
@@ -69,17 +75,17 @@ initiate_timer =  setInterval(
 //Checks the rhythm of the user input and inputs it into an array.
 function check_rhythm(){
   if (countdown_start % 4 !== 0){
-      if(countdown_start <1 && key_stroke_input<3){  //I had to lax the key_stroke_input where user can make a few mistakes getting the rhytm of the game.
+      if(countdown_start <1 && key_stroke_input<2){  //I had to lax the key_stroke_input where user can make a few mistakes getting the rhytm of the game.
         //Use the filter function
          key_stroke_input++;
          user_input_keys.push(countdown_start);
-      }else if (countdown_start>1 && countdown_start <2 && key_stroke_input<6){
+      }else if (countdown_start>1 && countdown_start <2 && key_stroke_input<4){
           key_stroke_input++;
          user_input_keys.push(countdown_start);
-      }else if (countdown_start>2 && countdown_start <3 && key_stroke_input<9){
+      }else if (countdown_start>2 && countdown_start <3 && key_stroke_input<6){
           key_stroke_input++;
          user_input_keys.push(countdown_start);
-      }else if (countdown_start>3 && countdown_start <4 && key_stroke_input<12){
+      }else if (countdown_start>3 && countdown_start <4 && key_stroke_input<8){
          key_stroke_input++;
          user_input_keys.push(countdown_start);
       }else if(countdown_start>4){
@@ -130,10 +136,10 @@ function check_rhythm_filter_check(){
 
   var correct_hits = user_input_keys.filter(function(each_input){
 
-        return ((each_input < 1 && (each_input <=0.25 || each_input >=0.75) )||
-          (each_input >= 1 && (each_input % 1 <=0.25 || each_input % 1 >=0.75) ) ||
-          (each_input >=2 &&  (each_input % 2 <=0.25 || each_input % 2 >=0.75)) ||
-          (each_input >= 3  && (each_input % 3 <=0.25 || each_input % 3 >=0.75))) && each_input <4;
+        return ((each_input < 1 && (each_input <=0.2 || each_input >=0.8) )||
+          (each_input >= 1 && (each_input % 1 <=0.2 || each_input % 1 >=0.8) ) ||
+          (each_input >=2 &&  (each_input % 2 <=0.2 || each_input % 2 >=0.8)) ||
+          (each_input >= 3  && (each_input % 3 <=0.2 || each_input % 3 >=0.8))) && each_input <4;
           });
 
   console.log(user_input_keys +"Here is the correct ones:"+correct_hits);
@@ -160,17 +166,17 @@ $(document).ready(function () {
 
             case 32:  // spacebar
             case 87:  // "w" key
-            case 38:  // up arrow
+
                 check_rhythm();
                 break;
 
             case 68:  // "d" key
-            case 39:  // right arrow
+
                  check_rhythm();
                 break;
 
             case 83:  // "s" key
-            case 40:  // down arrow
+
                 check_rhythm();
                 break;
         } // switch
@@ -206,7 +212,7 @@ $(document).ready(function () {
 var canvas = document.querySelector('.diffusion-game');
 canvas.width = window.innerWidth - 30;
 var ctx = canvas.getContext('2d');
-
+ctx.globalAlpha = 0.35;
 
 //ctx will be used to draw the arrays.
 
@@ -241,7 +247,14 @@ function get_molecule_color(){
 
 }
 function rate_rand_movement(){
- var d = 10-Math.floor(Math.random()*20);
+ var d=0;
+var random_selector = Math.random()*10;
+if (random_selector<=5){
+  d = Math.floor(Math.random()*20);
+}else{
+d = -1*(Math.floor(Math.random()*20));
+
+}
 return d;
 
 }
@@ -250,9 +263,15 @@ return d;
 
 
 Molecule.prototype.draw = function () {
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = 'hsl(' + (75*game_rhythm_temp_pace[iter_progress]) + ', 100%, 50%)';
+                    //'rgba('+(75*game_rhythm_temp_pace[iter_progress])+', 0,'+ (250-(75*game_rhythm_temp_pace[iter_progress]))+', 0.2)'
+
+      //  ctx.fillStyle = 'rgba(8, 0,222, 0.2)';
+  //ctx.strokeStyle = 'rgba(255, 0, 0, 0.1)';
     ctx.beginPath();
     ctx.arc(this.x, this.y, 25, 0, (Math.PI*2));
+
+
     ctx.fill();
 };
 
@@ -260,34 +279,34 @@ Molecule.prototype.reset_molecule_position = function () {
 var random_selector = Math.floor((Math.random *4));
 
     if (this.x <= -canvas.width) {
-      if (random_selector <= 1){
+      if (random_selector <= 5){
         this.x = Math.random()* canvas.width;
       }else{
         this.x = canvas.width;
-        this.x=0;
+        //this.x=0;
       }
     }
     if (this.x >= canvas.width) {
-  if (random_selector <= 1){
+  if (random_selector <=5){
         this.x = Math.random()* canvas.width;
       }else{
           this.x = -canvas.width;
-          this.x=0;
+          //this.x=0;
       }
     }
 if (this.y >= canvas.height) {
-  if (random_selector <= 1){
+  if (random_selector <= 5){
         this.y = Math.random()* canvas.height;
     }else{
         this.y = -canvas.height;}
-        this.y=0;
+        //this.y=0;
     }
     if (this.y <= -canvas.height) {
-      if (random_selector <= 1){
+      if (random_selector <= 5){
         this.y = Math.random()* canvas.height;
       }else{
           this.y = canvas.height;
-          this.y =0;
+          //this.y =0;
       }
     }
 
@@ -324,23 +343,13 @@ canvas.width = window.innerWidth - 30;
 var ctx = canvas.getContext('2d');
 
 ctx.fillRect(20, 20, 100, 100);
-// var flappyBox = {
-//     x: 0,
-//     y: 225,
-//     width: 50,
-//     height: 50,
-//     draw: function () {
-//         ctx.fillStyle = 'indigo';
-//         ctx.fillRect(this.x, this.y, this.width, this.height);
-//     }
-// };
-
 
 function create_Molecules(number, total_distr_percent, y_x_ratio, temp1){
 
   for (var i =0; i < number; i++){
     console.log(molecule_diffuse_location(total_distr_percent,y_x_ratio)[1]);
-    var temp= new Molecule(50, 50, 'green', molecule_diffuse_location(total_distr_percent,y_x_ratio)[0],molecule_diffuse_location(total_distr_percent,y_x_ratio)[1],temp1);
+
+    var temp= new Molecule(50, 50,'green', molecule_diffuse_location(total_distr_percent,y_x_ratio)[0],molecule_diffuse_location(total_distr_percent,y_x_ratio)[1],temp1);
     myMolecules.push(temp);
 
 
@@ -385,17 +394,17 @@ function draw () {
          //Here is where you will update the drawing and modulate x, y, or x and y with positive or negative functions
         //Here is where you will make all of the functions calls to get the molecules or as nomral as possible.
 
-
+         var random_select= Math.floor(Math.random(2));
         //!!!!Here is the main connection to the timing part and the canvas diffusion.
         oneMolecule.temp_movement= game_rhythm_temp_pace[iter_progress];
 
         oneMolecule.reset_molecule_position();
-        oneMolecule.x += rate_rand_movement()*oneMolecule.temp_movement;  //This modulates the motion based on  temperature !!! very important for controllin the game.
-        oneMolecule.y += rate_rand_movement()*oneMolecule.temp_movement;
-        // if any tube crashes with flappy box, GAME OVER!
-        // if (oneMolecule.crashWith(flappyBox)) {
-        //     isGameOver = true;
-        // }
+
+        oneMolecule.x += (rate_rand_movement()*oneMolecule.temp_movement);  //This modulates the motion based on  temperature !!! very important for controllin the game.
+        oneMolecule.y += (rate_rand_movement()*oneMolecule.temp_movement);
+
+
+
     });
 
     // only continue to draw things if game isn't over

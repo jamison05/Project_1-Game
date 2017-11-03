@@ -9,34 +9,41 @@
 <body>
 <!-- The begining is where the title, user/game-status, game canvas, user-feedback will be ordered respectively
      The beginning of the game will be initiated by a timer that will be displayed in the game status bar, -->
-    <h1>Get the Rhythm of Diffusion</h1>
 
 <!-- This declares the game status header class, -->
 
 
 
     <header class= "Game-Status">
+      <div class = "header_class">
+        <h1>Get the Rhythm of Diffusion</h1>
+      </div>
       <div class = "Game_Status_div">
-        <p class = "timer">5</p>
-        <span class = "level">0</span>
-        <span class = "speed">1</span>
+
+        <p class = "timer">0</p>
+        <div class="spacer"></div>
         <div class="lives">
       <!--    <div class="life"></div>
           <div class="life"></div>
           <div class="life"></div>-->
         </div>
+        <span class = "Speed">1</span>
+
       </div>
     </header>
 
 <!-- This declares the diffusion canvas-->
+  <div class ="canvas_class">
     <canvas class="diffusion-game" height="500px"></canvas>
-
+  </div>
     <footer class= "User-response-bar">
+
+      <button class="Initiate-rhythm">Start_rhythm</button>
       <p>Key Press =</p>
       <span class = "Key-Press">0</span>
-      <p>Time off by: =</p>
-      <span class = "Speed">0 ms</span>
-      <button class="Initiate-rhythm">Start_rhythm</button>
+
+
+
     </footer>
     <script
          src="https://code.jquery.com/jquery-3.2.1.min.js"
