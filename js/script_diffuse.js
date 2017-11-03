@@ -166,23 +166,24 @@ $(document).ready(function () {
 
                check_rhythm();
                   key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
+       document.getElementById('drum_bass').play();
                 break;
 
             case 32:  // spacebar
             case 87:  // "w" key
-
+              document.getElementById('drum_snare').play();
                 check_rhythm();
                 key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
                 break;
 
             case 68:  // "d" key
-
+             document.getElementById('drum_bass').play();
                  check_rhythm();
                 key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
                 break;
 
             case 83:  // "s" key
-
+                document.getElementById('drum_snare').play();
                 check_rhythm();
                    key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
                 break;
