@@ -96,7 +96,7 @@ function check_rhythm(){
         //does not accomplish the intended rhythm.
          key_stroke_input = 0;
          //Call a filter function that determines whether the values are correct.
-
+         document.getElementById('sound1').play();
          user_input_keys.push(countdown_start);
          correct_check = check_rhythm_filter_check(user_input_keys);
 
