@@ -5,58 +5,89 @@ body {
 
 
 /*Splah-page Instructionsl*******************************/
-.Splashpage_header{
-  display:flex;
-  width:100%;
-  justify-content: center;
-}
-
-.splash-wrapper {
-  width:100%;
-  display: flex;
-  flex-direction:row;
-}
-
 .Splashpage{
 
   display:flex;
   flex-wrap: wrap;
   flex-direction:row;
+  background: url("./../images/general_background.png");
+  border-radius: 5px;
+  background-size: cover;
+  background-origin: content-box;
+  background-repeat: no-repeat
 }
+
+.Splashpage_header{
+  display:flex;
+  width:100%;
+  justify-content: center;
+  font-style:bold;
+  color:#6534ff;
+  background:#fccdd34d;
+  margin-top:2.5%;
+  margin-bottom:2.5%
+  padding: 5% 10% 5% 10%;
+}
+.Splashpage_header>.header_container{
+
+    background:#fccdd34d;
+  width:300px;
+
+
+}
+.splash-wrapper {
+  width:100%;
+  display: flex;
+  flex-direction:row;
+  background:#62bcfa1f;
+}
+
+
 
 /*First page Instructionsl*******************************/
 .Instructions{
-display:flex;
-align-items: center;
-width:45%;
+  display:flex;
+  align-items: center;
+  width:45%;
   justify-content: center;
-height:100%;
-
+  height:100%;
+  margin-left:5%;
+  padding-left:5%;
+  margin-right:1%;
+  padding-right:3%;
+  background: url("./../images/instructions_backdrop2.png");
+  border-radius: 5px;
+  background-size:cover;
+  background-origin: content-box;
+  background-repeat: no-repeat;
 
 }
 
 .Instruction_button>button{
-background-color:  #bbc4ef;
+display:flex;
+justify-content: center;
+background-color: #6534ff;
+
+color:white;
+width:125%;
+
+
 
 }
-.Instruction_button .btn-primary> {
-  display:flex;
-  justify-content: center;
-  align-items: flex-end;
 
-  width:200px;
-  height:100px;
-}
+
 /*First page carousel*******************************/
 .container-carousel{
   width:400px;
   height:350px;
+  background-color: #bbc4ef9c;
 
 }
 #carouseldiffusionInfo{
 width:100%;
 height:100%;
 padding:5% 5% 5% 5%;
+  border-radius: 5px;
 
 }
 
@@ -77,14 +108,16 @@ padding:5% 5% 5% 5%;
   top:10%;
   height:200px;
   width:100%;
-  background-image: url("./../imgages/overlay.png");
+
 }
 
-.Start-game-button button{
+.Start-game-button>button{
 margin-top:50px;
   margin-left:23%;
-  color:white;
-  font-size:1.5em;
+  color:#6534ffad;
+  font-style: oblique;
+
+  font-size:2.0em;
   font-weight: bold;
   border-radius:10px;
   width:50%;
@@ -92,10 +125,10 @@ margin-top:50px;
   padding:1.8% 1.8% 4% 1.8%;
 
  /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(#bbc4ef,#fccdd3, #bbc4ef); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#bbc4ef,#fccdd3, #bbc4ef); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#bbc4ef ,#fccdd3, #bbc4ef); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#bbc4ef,#fccdd3, #bbc4ef); /* Standard syntax */
+  background: -webkit-linear-gradient(#bbc4ef,#fccdd34d, #bbc4ef); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#bbc4ef,#fccdd34d, #bbc4ef); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#bbc4ef ,#fccdd34d, #bbc4ef); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#bbc4ef,#fccdd34d, #bbc4ef); /* Standard syntax */
 
 }
 .carousel-control{
@@ -128,7 +161,7 @@ margin-top:50px;
   padding:2% 2% 2% 5%
 }
 .carousel-inner .carousel-text{
-
+  font-size:0.5em;
   display:inline-flex;
   flex-wrap: wrap;
   top:5%;

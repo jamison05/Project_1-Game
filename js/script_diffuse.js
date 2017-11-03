@@ -5,11 +5,13 @@ start_button.onclick = function () {
 
     if (initiate_iter<1){
         if (myMolecules === null){
-        create_Molecules(125,0.5,0.5,game_rhythm_temp_pace[iter_progress]);//Num of elements, total distribution x and y, ratio of y/x offset distribtuion
+        create_Molecules(125,0.5,0.5,game_rhythm_temp_pace[iter_progress]);
+      ///Num of elements, total distribution x and y, ratio of y/x offset distribtuion
       }else{
         myMolecules = [];
         create_Molecules(125,0.5,0.5,game_rhythm_temp_pace[iter_progress]);
         countdown_start = 0;
+
       }
 
     }
@@ -75,17 +77,18 @@ initiate_timer =  setInterval(
 //Checks the rhythm of the user input and inputs it into an array.
 function check_rhythm(){
   if (countdown_start % 4 !== 0){
-      if(countdown_start <1 && key_stroke_input<2){  //I had to lax the key_stroke_input where user can make a few mistakes getting the rhytm of the game.
+      if(countdown_start <1 && key_stroke_input<=1){  //I had to lax the key_stroke_input where user can make a few mistakes getting the rhytm of the game.
         //Use the filter function
          key_stroke_input++;
          user_input_keys.push(countdown_start);
-      }else if (countdown_start>1 && countdown_start <2 && key_stroke_input<4){
+
+      }else if (countdown_start>1 && countdown_start <2 && key_stroke_input<=2){
           key_stroke_input++;
          user_input_keys.push(countdown_start);
-      }else if (countdown_start>2 && countdown_start <3 && key_stroke_input<6){
+      }else if (countdown_start>2 && countdown_start <3 && key_stroke_input<=3){
           key_stroke_input++;
          user_input_keys.push(countdown_start);
-      }else if (countdown_start>3 && countdown_start <4 && key_stroke_input<8){
+      }else if (countdown_start>3 && countdown_start <4 && key_stroke_input<=4){
          key_stroke_input++;
          user_input_keys.push(countdown_start);
       }else if(countdown_start>4){
@@ -106,7 +109,7 @@ function check_rhythm(){
          }
          //
          update_lifeDOM();
-         if(correct_check<4){
+         if(correct_check<3){
           lose_a_life();
         }
 
@@ -162,22 +165,26 @@ $(document).ready(function () {
             case 37:  // left arrow
 
                check_rhythm();
+                  key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
                 break;
 
             case 32:  // spacebar
             case 87:  // "w" key
 
                 check_rhythm();
+                key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
                 break;
 
             case 68:  // "d" key
 
                  check_rhythm();
+                key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
                 break;
 
             case 83:  // "s" key
 
                 check_rhythm();
+                   key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
                 break;
         } // switch
     }); // keyup
@@ -263,16 +270,58 @@ return d;
 
 
 Molecule.prototype.draw = function () {
-    ctx.fillStyle = 'hsl(' + (75*game_rhythm_temp_pace[iter_progress]) + ', 100%, 50%)';
-                    //'rgba('+(75*game_rhythm_temp_pace[iter_progress])+', 0,'+ (250-(75*game_rhythm_temp_pace[iter_progress]))+', 0.2)'
+        //  ctx.fillStyle = 'hsl(' + (75*game_rhythm_temp_pace[iter_progress]) + ', 100%, 70%)';
+                          //'rgba('+(75*game_rhythm_temp_pace[iter_progress])+', 0,'+ (250-(75*game_rhythm_temp_pace[iter_progress]))+', 0.2)'
 
-      //  ctx.fillStyle = 'rgba(8, 0,222, 0.2)';
+            //  ctx.fillStyle = 'rgba(8, 0,222, 0.2)';
+        //ctx.strokeStyle = 'rgba(255, 0, 0, 0.1)';
+        //  ctx.beginPath();
+          //ctx.arc(this.x, this.y, 25, 0, (Math.PI*2));
+
+
+          //ctx.fill();
+
+                    //'rgba('+(75*game_rhythm_temp_pace[iter_progress])+', 0,'+ (250-(75*game_rhythm_temp_pace[iter_progress]))+', 0.2)'
+//[0.35,0.45,0.58,0.7,0.8,0.9,1,1.5,1.8];
+switch (iter_progress){
+case 0:
+ctx.fillStyle = 'rgba(8, 0,222, 0.35)';
+break;
+case 1:
+ctx.fillStyle = 'rgba(35, 0,222, 0.35)';
+break;
+case 2:
+ctx.fillStyle = 'rgba(70, 0,222, 0.35)';
+break;
+case 3:
+ctx.fillStyle = 'rgba(100, 0,222, 0.35)';
+break;
+case 4:
+ctx.fillStyle = 'rgba(145, 0,222, 0.35)';
+break;
+case 5:
+ctx.fillStyle = 'rgba(170, 0,222, 0.35)';
+break;
+case 6:
+ctx.fillStyle = 'rgba(210, 0,222, 0.35)';
+break;
+case 7:
+ctx.fillStyle = 'rgba(250, 0,222, 0.35)';
+break;
+case 8:
+ctx.fillStyle = 'rgba(250, 0,75, 0.35)';
+break;
+default:
+ctx.fillStyle = 'rgba(8, 0,222, 0.35)';
+break;
+}
+
+
+
   //ctx.strokeStyle = 'rgba(255, 0, 0, 0.1)';
     ctx.beginPath();
-    ctx.arc(this.x, this.y, 25, 0, (Math.PI*2));
-
-
-    ctx.fill();
+    ctx.arc(this.x, this.y, 20, 0, (Math.PI*2));
+     ctx.fill();
 };
 
 Molecule.prototype.reset_molecule_position = function () {

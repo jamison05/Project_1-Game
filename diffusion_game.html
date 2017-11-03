@@ -13,14 +13,13 @@
 <!-- This declares the game status header class, -->
 
 
-
+<div class = "Game_page">
     <header class= "Game-Status">
       <div class = "header_class">
         <h1>Get the Rhythm of Diffusion</h1>
       </div>
       <div class = "Game_Status_div">
 
-        <p class = "timer">0</p>
         <div class="spacer"></div>
         <div class="lives">
       <!--    <div class="life"></div>
@@ -28,7 +27,9 @@
           <div class="life"></div>-->
         </div>
         <span class = "Speed">1</span>
-
+        <div class = "timer_container">
+        <p class = "timer">0</p>
+        </div>
       </div>
     </header>
 
@@ -36,6 +37,7 @@
   <div class ="canvas_class">
     <canvas class="diffusion-game" height="500px"></canvas>
   </div>
+  <div class= "User-response-bar_container">
     <footer class= "User-response-bar">
 
       <button class="Initiate-rhythm">Start_rhythm</button>
@@ -45,6 +47,7 @@
 
 
     </footer>
+  </div>
     <script
          src="https://code.jquery.com/jquery-3.2.1.min.js"
          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -58,6 +61,6 @@
        </script>
         <script src="./js/script_diffuse.js"></script>
 
-
+</div>
 </body>
 </html>
