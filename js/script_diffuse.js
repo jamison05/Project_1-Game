@@ -21,10 +21,6 @@ start_button.onclick = function () {
 
 };
 
-
-
-
-
 //Declaration count-up number I may make it a modulus of 4.  To represent the beat.
 //This is where the count will start. it Will will increase this number
 var countdown_start = 0;
@@ -165,8 +161,8 @@ $(document).ready(function () {
             case 37:  // left arrow
 
                check_rhythm();
-                  key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
-       document.getElementById('drum_bass').play();
+                key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
+                document.getElementById('drum_bass').play();
                 break;
 
             case 32:  // spacebar
@@ -194,8 +190,8 @@ $(document).ready(function () {
 
 
   function lose_a_life(){
-  life -= 1;
-  update_lifeDOM();
+        life -= 1;
+        update_lifeDOM();
   }
 //Code that updates the live elements visually,
   function update_lifeDOM () {
@@ -317,8 +313,6 @@ ctx.fillStyle = 'rgba(8, 0,222, 0.35)';
 break;
 }
 
-
-
   //ctx.strokeStyle = 'rgba(255, 0, 0, 0.1)';
     ctx.beginPath();
     ctx.arc(this.x, this.y, 20, 0, (Math.PI*2));
@@ -363,30 +357,6 @@ if (this.y >= canvas.height) {
 };
 
 
-// Molecule.prototype.crashWith = function (obj) {
-//     return getBottom(this) >= getTop(obj)    &&
-//            getTop(this)    <= getBottom(obj) &&
-//            getRight(this)  >= getLeft(obj)   &&
-//            getLeft(this)   <= getRight(obj);
-// };
-//
-// function getTop(obj) {
-//   return obj.y;
-// }
-//
-// function getBottom(obj) {
-//   return obj.y + obj.height;
-// }
-//
-// function getLeft(obj) {
-//   return obj.x;
-// }
-//
-// function getRight(obj) {
-//   return obj.x + obj.width;
-// }
-
-
 var canvas = document.querySelector('.diffusion-game');
 canvas.width = window.innerWidth - 30;
 
@@ -411,8 +381,8 @@ function molecule_diffuse_location(percent_diffused,y_x_ratio){
 //y/x  ratio meaning that diffusion is mostly spread over the y/x ratios.
 //So if y_x_ratio is 1.25 it will equal 1.25/addtional spread trough the y-axis
 
-var value=[Math.random()*(canvas.width*percent_diffused*y_x_ratio),Math.random()*(canvas.width*percent_diffused*(1/y_x_ratio))];
-return value;
+    var value=[Math.random()*(canvas.width*percent_diffused*y_x_ratio),Math.random()*(canvas.width*percent_diffused*(1/y_x_ratio))];
+    return value;
 
 }
 

@@ -1,4 +1,4 @@
-var start_button = document.querySelector('.Start-game-button');
+var start_button = document.querySelector('.Start-game-button-inner');
 start_button.onclick = function () {
     // create the li element (starts emptys)
     location.href='./diffusion_game.html';

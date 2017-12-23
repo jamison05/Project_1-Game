@@ -15,20 +15,19 @@
 }
 
 .Game_Status{
-display:flex;
-justify-content:center;
+  display:flex;
+  justify-content:center;
 
 }
 .header_class h1{
-display:flex;
-font-style: normal;
-font-weight: bold;
-color: #906efc94;
-justify-content:center;
-padding-top:5%;
-padding-bottom:5%;
-
-margin-left:15%;
+  display:flex;
+  font-style: normal;
+  font-weight: bold;
+  color: #906efc94;
+  justify-content:center;
+  padding-top:5%;
+  padding-bottom:5%;
+  margin-left:15%;
 }
 .canvas_class canvas{
   margin-left:5%;
@@ -49,14 +48,14 @@ margin-left:15%;
 
 
 .Game_Status_div{
-display:flex;
-justify-content:flex-start;
-background-color:rgba(15, 15, 15, 0.25);
-height:15%;
-width:65%;
-margin-left:25%;
-padding:2% 2% 2% 2%;
-border-radius: 10px;
+  display:flex;
+  justify-content:flex-start;
+  background-color:rgba(15, 15, 15, 0.25);
+  height:15%;
+  width:65%;
+  margin-left:25%;
+  padding:2% 2% 2% 2%;
+  border-radius: 10px;
 
 }
 .User-response-bar{
@@ -77,14 +76,14 @@ border-radius: 10px;
 }
 
 .User-response-bar>button{
-margin-left:5%;
-margin-top:1%;
-border-radius: 5px;
-color:white;
-font-weight: 400;
-height:50%;
-background-color= #bbc4ef;
-border-radius: 5px;
+  margin-left:5%;
+  margin-top:1.75%;
+  border-radius: 5px;
+  color:white;
+  font-weight: 400;
+  height:50%;
+  background-color: #6534ff;
+  border-color: rgba(#9434ff, 0.56)
 
 }
 .User-response-bar span, p{
@@ -93,34 +92,33 @@ border-radius: 5px;
 
 }
 .game_results>h1,a{
-    background-color:rgba(100,5,5,.35);
-    height: 100%;
+  background-color:rgba(100,5,5,.35);
+  height: 100%;
 
-    display:flex;
-    justify-content:center;
-    align-items: center;
-    text-align:center;
-    color:white;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  text-align:center;
+  color:white;
 
   }
-  .game_results>a{
-        font-size:5em;
+.game_results>a{
+  font-size:5em;
   }
-  .game_results>h1{
-        color:white;
-        font-size:9em;
+.game_results>h1{
+  color:white;
+  font-size:9em;
   }
-  .win{
-    display:flex;
-    justify-content:center;
-    align-items: center;
-    text-align:center;
-    height:800px;
-    background: url("./../images/graphics_you_win.jpg");
-    border-radius: 5px;
-    background-size: cover;
-
-    background-repeat: no-repeat
+.win{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  text-align:center;
+  height:800px;
+  background: url("./../images/graphics_you_win.jpg");
+  border-radius: 5px;
+  background-size: cover;
+  background-repeat: no-repeat
   }
 .lose{
   display:flex;
@@ -131,8 +129,7 @@ border-radius: 5px;
   background: url("./../images/graphics_you_lose.jpg");
   border-radius: 5px;
   background-size: cover;
-
-  background-repeat: no-repeat
+  background-repeat: no-repeat;
 }
 .lives {
     transition: 1s;
@@ -146,25 +143,25 @@ width:50px;
 
 
 .life3{
-     transition: 3s;
-     content:  url('./../images/life3.png');
-     display: inline-block;
-     transform: scale(.25);
-     transform: scale(.75);
+ transition: 3s;
+ content:  url('./../images/life3.png');
+ display: inline-block;
+ transform: scale(.25);
+ transform: scale(.75);
 }
 
 
 .life2{
-     content:  url('./../images/life2.png');
-     display: inline-block;
-     transform: scale(.25);
-     transform: scale(.75);
+ content:  url('./../images/life2.png');
+ display: inline-block;
+ transform: scale(.25);
+ transform: scale(.75);
 }
 
 
 .life1{
-    content:  url('./../images/life1.png');
-    display: inline-block;
-    transform: scale(.25);
-    transform: scale(.75);
+content:  url('./../images/life1.png');
+display: inline-block;
+transform: scale(.25);
+transform: scale(.75);
 }
