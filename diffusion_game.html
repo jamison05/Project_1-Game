@@ -12,17 +12,17 @@
 
 <!-- This declares the game status header class, -->
 
-<audio id="sound1">
-  <source src="sound/steady_beat.mp3">
-</audio>
-<audio id="drum_bass">
-  <source src="sound/drum_bass.wav">
-</audio>
-<audio id="drum_snare">
-  <source src="sound/drum_snare.wav">
-</audio>
+  <audio id="sound1">
+    <source src="sound/steady_beat.mp3">
+  </audio>
+  <audio id="drum_bass">
+    <source src="sound/drum_bass.wav">
+  </audio>
+  <audio id="drum_snare">
+    <source src="sound/drum_snare.wav">
+  </audio>
 <div class = "Game_page">
-    <header class= "Game-Status">
+    <div class= "Game-Status">
       <div class = "header_class">
         <h1>Get the Rhythm of Diffusion</h1>
       </div>
@@ -30,32 +30,56 @@
 
         <div class="spacer"></div>
         <div class="lives">
-      <!--    <div class="life"></div>
+          <!--    <div class="life"></div>
           <div class="life"></div>
           <div class="life"></div>-->
         </div>
         <span class = "Speed">1</span>
         <div class = "timer_container">
-        <p class = "timer">0</p>
+          <p class = "timer">0</p>
         </div>
       </div>
-    </header>
+    </div>
 
 <!-- This declares the diffusion canvas-->
   <div class ="canvas_class">
     <canvas class="diffusion-game" height="500px"></canvas>
   </div>
   <div class= "User-response-bar_container">
-    <footer class= "User-response-bar">
+    <div class= "User-response-bar">
 
       <button class="Initiate-rhythm">Start_rhythm</button>
       <p>Key Press =</p>
       <span class = "Key-Press">0</span>
-
-
-
-    </footer>
   </div>
+</div>
+<div class = "display_modal" >
+
+
+  <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+
+        <div class="modal-content win">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Game Results</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <p> Display something</p>
+          </div>
+          <div class="modal-footer">
+            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+            <button type="button" class="btn btn-primary" id="myButton">Go main menu</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+<footer>
     <script
          src="https://code.jquery.com/jquery-3.2.1.min.js"
          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -69,6 +93,6 @@
        </script>
         <script src="./js/script_diffuse.js"></script>
 
-</div>
+</footer>
 </body>
 </html>

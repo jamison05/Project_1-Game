@@ -111,15 +111,25 @@ function check_rhythm(){
 
         if (life <0){
               game_status=-1;
-              location.href='./game_results_lose.html';
+              //location.href='./game_results_lose.html';
+              updateGameResults(game_status);
+              $('#myModal').modal('show');
+
+
         }
         if (life <0){
               game_status=-1;
-              location.href='./game_results_lose.html';
+              //location.href='./game_results_lose.html';
+              updateGameResults(game_status);
+              $('#myModal').modal('show');
+
         }
         if (game_iteration >20){
+              game_status = 1;
+            //location.href='./game_results_win.html';
+              updateGameResults(game_status);
+              $('#myModal').modal('show');
 
-            location.href='./game_results_win.html';
         }
         //!!! Very important part of the program, this will make the program a continous loop
         set_timer();
@@ -128,7 +138,9 @@ function check_rhythm(){
   }
 
 }
-
+document.getElementById("myButton").onclick = function () {
+     location.href = "./index.html";
+ };
 var game_status=0;  //Determines whether 1 is you win the game -1 is when you lose the game.
 
 function check_rhythm_filter_check(){
@@ -208,6 +220,24 @@ $(document).ready(function () {
             myPost.addClass('life1');
         }
 
+}
+
+//Display Game game_results
+
+function updateGameResults (game_status) {
+  $('.modal-body p').html('You lose the game');
+
+  var myPost2 = $('.modal-body');
+    myPost2.removeClass('gameResult');
+      if (game_status<1){
+        myPost2.addClass('gameResult');
+        }
+
+        if (game_status>=1){
+        $('.modal-body p').html('You win the game');
+          myPost2 = $('.modal-body');
+          myPost2.addClass('gameResult');
+          }
 }
 
 //--------------------Canvas Implementation----------------------------------------------//

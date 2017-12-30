@@ -91,7 +91,7 @@
   font-style:bold;
 
 }
-.game_results>h1,a{
+.modal-body{
   background-color:rgba(100,5,5,.35);
   height: 100%;
 
@@ -102,19 +102,21 @@
   color:white;
 
   }
-.game_results>a{
-  font-size:5em;
-  }
-.game_results>h1{
+.modal-body>p{
+  text-align:center;
+  margin-right:5%;
+  padding:2% 2% 2% 2%;
+  font-size:4em;
   color:white;
-  font-size:9em;
   }
+
 .win{
   display:flex;
   justify-content:center;
   align-items: center;
   text-align:center;
-  height:800px;
+  height:100%;
+  width:100%;
   background: url("./../images/graphics_you_win.jpg");
   border-radius: 5px;
   background-size: cover;
@@ -125,7 +127,8 @@
   justify-content:center;
   align-items: center;
   text-align:center;
-  height:800px;
+  height:100%;
+  width:100%;
   background: url("./../images/graphics_you_lose.jpg");
   border-radius: 5px;
   background-size: cover;
