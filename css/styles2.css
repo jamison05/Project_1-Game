@@ -7,8 +7,9 @@
 
 }
 .Game_page{
+  height:105%;
+  width:105%;
   background: url("./../images/general_background.png");
-  border-radius: 5px;
   background-size: cover;
   background-origin: content-box;
   background-repeat: no-repeat
@@ -30,7 +31,22 @@
   margin-left:15%;
 }
 .canvas_class canvas{
-  margin-left:5%;
+
+  width:85%;
+  padding:2% 1% 2% 1%;
+  border-style: solid;
+  border-color:rgba(136, 34, 177, 0.09);
+  border:15px 15px 15px 15px;
+  margin-left:7%;
+  margin-top:5%;
+
+}
+
+.canvas_container{
+
+  width:100%;
+  height:100%;
+
 }
 
 .Game_Status_div>span, p{
@@ -76,8 +92,8 @@
 }
 
 .User-response-bar>button{
-  margin-left:5%;
-  margin-top:1.75%;
+  margin-left:15px;
+  margin-top:7px;
   border-radius: 5px;
   color:white;
   font-weight: 400;
@@ -93,19 +109,20 @@
 }
 .modal-body{
   background-color:rgba(100,5,5,.35);
-  height: 100%;
+  height: 85%;
+  margin: 2% 2% 2% 2%;
+  padding:5% 5% 5% 5%;
 
   display:flex;
   justify-content:center;
   align-items: center;
-  text-align:center;
+
   color:white;
 
   }
 .modal-body>p{
-  text-align:center;
-  margin-right:5%;
-  padding:2% 2% 2% 2%;
+
+  /*padding:2% 2% 2% 2%;*/
   font-size:4em;
   color:white;
   }
