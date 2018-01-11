@@ -59,7 +59,7 @@ initiate_timer =  setInterval(
               countFeedback.innerHTML = (Math.floor(countdown_start)*1000) + " "+ "milliseconds";
                clearInterval(initiate_timer);
                check_rhythm();
-               key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
+               key_pressed.innerHTML="   Right:   "+correct_check +"   Total: " + user_input_keys.length;
                arbdiffusion_speed.innerHTML="Speed is: "+game_rhythm_temp_pace[iter_progress];
               //Here is where you reset all values.
                countdown_start=0;
@@ -173,7 +173,7 @@ $(document).ready(function () {
             case 37:  // left arrow
 
                check_rhythm();
-                key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
+                key_pressed.innerHTML="   Right:  "+correct_check +"  Total: " + user_input_keys.length;
                 document.getElementById('drum_bass').play();
                 break;
 
@@ -181,19 +181,19 @@ $(document).ready(function () {
             case 87:  // "w" key
               document.getElementById('drum_snare').play();
                 check_rhythm();
-                key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
+                key_pressed.innerHTML="   Right:  "+correct_check +"  Total: " + user_input_keys.length;
                 break;
 
             case 68:  // "d" key
              document.getElementById('drum_bass').play();
                  check_rhythm();
-                key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
+                key_pressed.innerHTML="  Right:   "+correct_check +"   Total Number: " + user_input_keys.length;
                 break;
 
             case 83:  // "s" key
                 document.getElementById('drum_snare').play();
                 check_rhythm();
-                   key_pressed.innerHTML="Correct number: "+correct_check +" Total Number: " + user_input_keys.length;
+                   key_pressed.innerHTML="  Right: "+correct_check +"   Total: " + user_input_keys.length;
                 break;
         } // switch
     }); // keyup
@@ -281,17 +281,16 @@ function get_molecule_color(){
 
 }
 function rate_rand_movement(){
- var d=0;
-var random_selector = Math.random()*10;
-if (random_selector<=5){
-  d = Math.floor(Math.random()*20);
-}else{
-d = -1*(Math.floor(Math.random()*20));
-
-}
-return d;
-
-}
+     var d=0;
+     var random_selector = Math.random()*10;
+      if (random_selector<=5){
+        d = Math.floor(Math.random()*20);
+      }
+      else{
+        d = -1*(Math.floor(Math.random()*20));
+      }
+      return d;
+    }
 
 
 
@@ -311,42 +310,42 @@ Molecule.prototype.draw = function () {
                     //'rgba('+(75*game_rhythm_temp_pace[iter_progress])+', 0,'+ (250-(75*game_rhythm_temp_pace[iter_progress]))+', 0.2)'
 //[0.35,0.45,0.58,0.7,0.8,0.9,1,1.5,1.8];
 switch (iter_progress){
-case 0:
-ctx.fillStyle = 'rgba(8, 0,222, 0.35)';
-break;
-case 1:
-ctx.fillStyle = 'rgba(35, 0,222, 0.35)';
-break;
-case 2:
-ctx.fillStyle = 'rgba(70, 0,222, 0.35)';
-break;
-case 3:
-ctx.fillStyle = 'rgba(100, 0,222, 0.35)';
-break;
-case 4:
-ctx.fillStyle = 'rgba(145, 0,222, 0.35)';
-break;
-case 5:
-ctx.fillStyle = 'rgba(170, 0,222, 0.35)';
-break;
-case 6:
-ctx.fillStyle = 'rgba(210, 0,222, 0.35)';
-break;
-case 7:
-ctx.fillStyle = 'rgba(250, 0,222, 0.35)';
-break;
-case 8:
-ctx.fillStyle = 'rgba(250, 0,75, 0.35)';
-break;
-default:
-ctx.fillStyle = 'rgba(8, 0,222, 0.35)';
-break;
+    case 0:
+    ctx.fillStyle = 'rgba(8, 0,222, 0.35)';
+    break;
+    case 1:
+    ctx.fillStyle = 'rgba(35, 0,222, 0.35)';
+    break;
+    case 2:
+    ctx.fillStyle = 'rgba(70, 0,222, 0.35)';
+    break;
+    case 3:
+    ctx.fillStyle = 'rgba(100, 0,222, 0.35)';
+    break;
+    case 4:
+    ctx.fillStyle = 'rgba(145, 0,222, 0.35)';
+    break;
+    case 5:
+    ctx.fillStyle = 'rgba(170, 0,222, 0.35)';
+    break;
+    case 6:
+    ctx.fillStyle = 'rgba(210, 0,222, 0.35)';
+    break;
+    case 7:
+    ctx.fillStyle = 'rgba(250, 0,222, 0.35)';
+    break;
+    case 8:
+    ctx.fillStyle = 'rgba(250, 0,75, 0.35)';
+    break;
+    default:
+    ctx.fillStyle = 'rgba(8, 0,222, 0.35)';
+    break;
 }
 
   //ctx.strokeStyle = 'rgba(255, 0, 0, 0.1)';
     ctx.beginPath();
     ctx.arc(this.x, this.y, 20, 0, (Math.PI*2));
-     ctx.fill();
+    ctx.fill();
 };
 
 Molecule.prototype.reset_molecule_position = function () {
