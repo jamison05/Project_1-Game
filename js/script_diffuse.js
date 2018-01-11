@@ -187,7 +187,7 @@ $(document).ready(function () {
             case 68:  // "d" key
              document.getElementById('drum_bass').play();
                  check_rhythm();
-                key_pressed.innerHTML="  Right:   "+correct_check +"   Total Number: " + user_input_keys.length;
+                key_pressed.innerHTML="  Right:   "+correct_check +"   Total: " + user_input_keys.length;
                 break;
 
             case 83:  // "s" key
